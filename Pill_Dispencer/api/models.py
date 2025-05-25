@@ -11,12 +11,10 @@ class User(models.Model):
 class MedicineSchedule(models.Model):
     User = models.ForeignKey(User, on_delete=models.CASCADE, related_name="schedules")
     
-    # Información del medicamento (ya no usamos un modelo separado)
     MedicineName = models.CharField(max_length=255)
     Dose = models.CharField(max_length=100)
     Description = models.TextField(blank=True, null=True)
 
-    # Información de horario
     Day = models.CharField(max_length=20, choices=[
         ('Monday', 'Monday'),
         ('Tuesday', 'Tuesday'),
