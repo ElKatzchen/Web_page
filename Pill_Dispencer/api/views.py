@@ -12,7 +12,7 @@ class MedicineScheduleViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         user_id = request.data.get('User')
-        medicine_count = MedicineSchedule.objects.filter(User_id=user_id).count()
+        medicine_count = MedicineSchedule.objects.filter(User_id=user_id).filter(MedicineName=request.data.get('MedicineName')).count()
         if medicine_count >= 6:
             return Response({"Max medicine is 6"}, status=status.HTTP_400_BAD_REQUEST)
         return super().create(request, *args, **kwargs)
